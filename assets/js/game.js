@@ -22,7 +22,7 @@ var fight = function(enemy) {
       if (confirmSkip) {
         window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
         // subtract money from playerInfo.money for skipping
-        playerInfo.money = Math.max(0, playerMoney - 10);
+        playerInfo.money = Math.max(0, playerInfo.money - 10);
         console.log("playerInfo.money", playerInfo.money);
         break;
       }
@@ -72,7 +72,7 @@ var fight = function(enemy) {
 // function to start a new game
 var startGame = function() {
   // reset player stats
- playerinfo.reset();
+ playerInfo.reset();
   
   // fight each enemy-robot by looping over them and fighting them one at a time
   for (var i = 0; i < enemyInfo.length; i++) {
@@ -117,7 +117,7 @@ var endGame = function() {
   window.alert("The game has now ended. Let's see how you did!");
   // if player is still alive, player wins!
   if (playerInfo.health > 0) {
-    window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+    window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
   }
   else {
     window.alert("You've lost your robot in battle.");
