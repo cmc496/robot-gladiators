@@ -12,31 +12,31 @@ var fightOrSkip = function() {
   // ask player if they'd like to fight or run
   var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
   
-  // validate prompt answer
-  if (promptFight === "" || promptFight === null) {
-    window.alert("You need to provide a valid answer! Please try again.");
-    // use return to call it again and stop the rest of this function from running
-    return fightOrSkip();
-  }
-
   // convert promptFight to all lowercase so we can check with less options
   promptFight = promptFight.toLowerCase();
 
+  // if the `promptFight` is NOT a valid value, then execute the following statements.
+  if (!promptFight) {
+    window.alert("You need to provide a valid answer! Please try again.");
+    return fightOrSkip();
+   }
+
+  // If player picks "skip", confirm and then stop the loop
   if (promptFight === "skip" || promptFight === "SKIP") {
-    // confirm player wants to skip
+    // confirm player wants  to skip
     var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-
-    // if yes (true), leave fight
-    if (confirmSkip) {
-      window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
-      // subtract money from playerInfo.money for skipping, don't let it go negative
-      playerInfo.money = Math.max(0, playerInfo.money - 10);
-      // stop while() loop using break; and enter next fight
-
-      // return true if player wants to leave
-      return true;
-    }
   }
+
+  // if yes (true), leave fight
+  if (confirmSkip) {
+    window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+    // subtract money from playerInfo.money for skipping, don't let it go negative
+    playerInfo.money = Math.max(0, playerInfo.money - 10);
+
+    // return true if player wants to leave
+    return true;
+  }
+  
   return false;
 };
 
@@ -165,6 +165,7 @@ var endGame = function() {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");
   }
 };
+
 // go to shop between battles function
 var shop = function() {
   // ask player what they'd like to do
